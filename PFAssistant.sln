@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PFAssistant.Data", "PFAssistant.Data\PFAssistant.Data.csproj", "{A260E7C2-93F4-438E-A52A-D3B268B4109C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PFAssistant.MongoContext", "PFAssistant.Data\PFAssistant.MongoContext.csproj", "{A260E7C2-93F4-438E-A52A-D3B268B4109C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
