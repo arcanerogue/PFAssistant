@@ -8,6 +8,7 @@ namespace PFAssistant.Data.Entities
 {
     public class Spell
     {
+        public int SpellId { get; set; }
         public string Name { get; set; }
         public string School { get; set; }
         public string SubSchool { get; set; }

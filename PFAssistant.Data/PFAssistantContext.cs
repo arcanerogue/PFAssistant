@@ -11,5 +11,7 @@ namespace PFAssistant.Data
     public class PFAssistantContext : DbContext
     {
         public DbSet<Spell> Spells { get; set; }
+        public DbSet<SpellClassDetail> SpellClassDetails { get; set; }
+        public DbSet<CastingClass> CastingClasses { get; set; }
     }
 }
