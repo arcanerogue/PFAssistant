@@ -1,0 +1,38 @@
+﻿@model IQueryable<PFAssistant.MongoContext.Spell>
+
+@{
+    ViewBag.Title = "SpellList";
+}
+
+<h2>Spells List</h2>
+
+<p>
+    @using (Html.BeginForm("SpellList", "Spells", FormMethod.Get))
+    {
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>School</th>
+                <th>Description</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.School)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShortDescription)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+</p>

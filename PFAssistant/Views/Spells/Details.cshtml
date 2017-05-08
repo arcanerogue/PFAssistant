@@ -1,0 +1,54 @@
+﻿@model PFAssistant.Models.SpellDetails
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Name</h2>
+
+<div id="content">
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.School)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.School)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubSchool)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubSchool)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Components)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Components)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+</div>
+
+
