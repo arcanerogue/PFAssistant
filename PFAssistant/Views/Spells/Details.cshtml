@@ -33,21 +33,93 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Descriptor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descriptor)
+        </dd>
+
+        <dt>
+            @Html.Label("Level")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpellLevel)
+        </dd>
+    </dl>
+</div>
+
+<h4>Casting</h4>
+<div id="content">
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CastingTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CastingTime)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Components)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Components)
         </dd>
+    </dl>
+</div>
 
+<h4>Effect</h4>
+<div id="content">
+    <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Range)
         </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Range)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Area)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Area)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Effect)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Effect)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Duration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Duration)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SavingThrow)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SavingThrow)
+        </dd>
+    </dl>
+</div>
+
+<h4>Description</h4>
+<div id="content">
+    <dl class="dl-horizontal">
+        @*<dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>*@
 
         <dd>
             @Html.DisplayFor(model => model.Description)
         </dd>
-
     </dl>
 </div>
 

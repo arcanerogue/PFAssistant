@@ -10,6 +10,8 @@ using System.Net;
 using PFAssistant.Models;
 using MongoDB.Driver.Builders;
 using MongoDB.Driver.Linq;
+using X.PagedList.Mvc;
+using X.PagedList;
 
 namespace PFAssistant.Controllers
 {    
@@ -18,10 +20,15 @@ namespace PFAssistant.Controllers
         public readonly PFAssistantContext db = new PFAssistantContext();
 
         // GET: Spells
-        public ActionResult SpellList()
+        public ActionResult SpellList(int? page, int? pageSize)
         {
-            var spells = db.Spells.FindAll().AsQueryable();
-            var model = spells.Take(10);
+            var pageNumber = page ?? 1;
+
+            var spells = db.Spells.FindAll()
+                           .AsQueryable()
+                           .OrderBy(t => t.Name);
+
+            var model = spells.ToPagedList(pageNumber, 10);
 
             return View(model);
         }
@@ -33,26 +40,35 @@ namespace PFAssistant.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            IQueryable<Spell> spellQuery = db.Spells.AsQueryable();
+            IQueryable<Spell> spellQuery = db.Spells.AsQueryable(); 
 
-            var query = spellQuery.Where(s => s.Id == id).First();
+            var query = spellQuery.Where(s => s.Id == id).FirstOrDefault();
 
-            SpellDetails spellDetails = new SpellDetails
+            if (query != null && !String.IsNullOrEmpty(query.Id))
             {
-                Id = query.Id,
-                Name = query.Name,
-                School = query.School,
-                SubSchool = query.SubSchool,
-                Components = query.Components,
-                Description = query.Description
-            };
-
-            if(spellDetails == null)
+                SpellDetails spellDetails = new SpellDetails
+                {
+                    Id = query.Id,
+                    Name = query.Name,
+                    School = query.School,
+                    SubSchool = query.SubSchool,
+                    Descriptor = query.Descriptor,
+                    SpellLevel = query.SpellLevel,
+                    CastingTime = query.CastingTime,
+                    Components = query.Components,
+                    Range = query.Range,
+                    Area = query.Area,
+                    Effect = query.Effect,
+                    Duration = query.Duration,
+                    SavingThrow = query.SavingThrow,
+                    Description = query.Description
+                };
+                return View(spellDetails);
+            }
+            else
             {
                 return HttpNotFound();
             }
-
-            return View(spellDetails);
         }
     }
 }
