@@ -20,18 +20,68 @@ namespace PFAssistant.Controllers
         public readonly PFAssistantContext db = new PFAssistantContext();
 
         // GET: Spells
-        public ActionResult SpellList(int? page, int? pageSize)
+        public ActionResult SpellList(string name, string filter, int? page, int? pageSize)
         {
             var pageNumber = page ?? 1;
 
-            var spells = db.Spells.FindAll()
-                           .AsQueryable()
-                           .OrderBy(t => t.Name);
+            if (name != null)
+                page = 1;
+            else
+                name = filter;
 
-            var model = spells.ToPagedList(pageNumber, 10);
+            //(name != null) ? page = 1 : name = filter;
 
-            return View(model);
+            ViewBag.Filter = name;
+
+            //var spells = db.Spells.FindAll()
+            //                .AsQueryable()
+            //                .OrderBy(t => t.Name);
+                        
+            if (!string.IsNullOrEmpty(name))
+            {
+                // Query the MongoDB collection while ignoring the case of the search string
+                var query = Query.Matches("name", new BsonRegularExpression(name, "i"));
+                var results = db.Spells.Find(query)
+                                    .AsQueryable()
+                                    .OrderBy(t => t.Name);
+                //spells = results.OrderBy(t => t.Name);
+                return View(results.ToPagedList(pageNumber, 10));
+            }
+
+            //var model = spells.ToPagedList(pageNumber, 10);
+            else
+            {
+                return View(db.Spells.FindAll()
+                        .AsQueryable()
+                        .OrderBy(t => t.Name)
+                        .ToPagedList(pageNumber, 10));
+            }
         }
+
+        //public ActionResult SpellList(SearchCriteria search, int? page, int? pageSize)
+        //{
+        //    SpellSearchModel model = new SpellSearchModel();
+        //    var pageNumber = page ?? 1;
+
+        //    var spells = db.Spells;
+        //    IQueryable<Spell> results = spells.AsQueryable();
+        //    //.FindAll();
+        //    //.AsQueryable();
+        //    //.OrderBy(t => t.Name);
+
+        //    if (!string.IsNullOrEmpty(search.Name))
+        //    {
+        //        //var query = Query.Matches("name", new BsonRegularExpression(search.Name, "i"));
+        //        //results = results.Find(query).AsQueryable();
+        //        results = results.Where(t => t.Name.Contains(search.Name))
+        //                         .OrderBy(t => t.Name);
+        //    }
+
+        //    model.PagedSpellList = results.ToPagedList(pageNumber, 10);
+        //    model.SearchValues = search;
+
+        //    return View(model);
+        //}
 
         public ActionResult Details(string id)
         {
