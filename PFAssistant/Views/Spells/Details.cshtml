@@ -4,17 +4,17 @@
     ViewBag.Title = "Details";
 }
 
-<h2>@Model.Name</h2>
+<h2><em>@Model.Name</em></h2>
 
 <div id="content">
     <dl class="dl-horizontal">
         @*<dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>*@
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.School)
@@ -24,24 +24,30 @@
             @Html.DisplayFor(model => model.School)
         </dd>
 
+        @if (!string.IsNullOrEmpty(Model.SubSchool))
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.SubSchool)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SubSchool)
+            </dd>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Descriptor))
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Descriptor)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Descriptor)
+            </dd>
+        }
+
         <dt>
-            @Html.DisplayNameFor(model => model.SubSchool)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SubSchool)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Descriptor)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Descriptor)
-        </dd>
-
-        <dt>
-            @Html.Label("Level")
+            @Html.DisplayNameFor(model => model.SpellLevel)
         </dt>
 
         <dd>
@@ -50,7 +56,10 @@
     </dl>
 </div>
 
-<h4>Casting</h4>
+<br />
+<div class="hline-top-bottom">
+    <h4>Casting</h4>
+</div>
 <div id="content">
     <dl class="dl-horizontal">
         <dt>
@@ -70,7 +79,10 @@
     </dl>
 </div>
 
-<h4>Effect</h4>
+<br />
+<div class="hline-top-bottom">
+    <h4>Effect</h4>
+</div>
 <div id="content">
     <dl class="dl-horizontal">
         <dt>
@@ -81,8 +93,8 @@
             @Html.DisplayFor(model => model.Range)
         </dd>
 
-        @if(!string.IsNullOrEmpty(Model.Area))
-        { 
+        @if (!string.IsNullOrEmpty(Model.Area))
+        {
             <dt>
                 @Html.DisplayNameFor(model => model.Area)
             </dt>
@@ -90,13 +102,17 @@
                 @Html.DisplayFor(model => model.Area)
             </dd>
         }
-        <dt>
-            @Html.DisplayNameFor(model => model.Effect)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Effect)
-        </dd>
+        @if (!string.IsNullOrEmpty(Model.Effect))
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Effect)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Effect)
+            </dd>
+        }
         <dt>
             @Html.DisplayNameFor(model => model.Duration)
         </dt>
@@ -114,15 +130,25 @@
     </dl>
 </div>
 
-<h4>Description</h4>
+<br />
+<div class="hline-top-bottom">
+    <h4>Description</h4>
+</div>
 <div id="content">
     <dl class="dl-horizontal">
-        @*<dt>
-                @Html.DisplayNameFor(model => model.Description)
-            </dt>*@
-
         <dd>
             @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+
+<div id="content">
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Source)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Source)
         </dd>
     </dl>
 </div>

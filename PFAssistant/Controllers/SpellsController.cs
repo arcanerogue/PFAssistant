@@ -40,10 +40,16 @@ namespace PFAssistant.Controllers
             if (!string.IsNullOrEmpty(name))
             {
                 // Query the MongoDB collection while ignoring the case of the search string
-                var query = Query.Matches("name", new BsonRegularExpression(name, "i"));
-                var results = db.Spells.Find(query)
-                                    .AsQueryable()
-                                    .OrderBy(t => t.Name);
+                //var query = Query.Matches("name", new BsonRegularExpression(name, "i"));
+                //var results = db.Spells.Find(query)
+                //                    .AsQueryable()
+                //                    .OrderBy(t => t.Name);
+
+                var results = db.Spells.AsQueryable()
+                                       .Where(s => s.Name.ToLower().Contains(name))
+                                       .OrderBy(t => t.Name);
+
+
                 //spells = results.OrderBy(t => t.Name);
                 return View(results.ToPagedList(pageNumber, 10));
             }
@@ -111,7 +117,8 @@ namespace PFAssistant.Controllers
                     Effect = query.Effect,
                     Duration = query.Duration,
                     SavingThrow = query.SavingThrow,
-                    Description = query.Description
+                    Description = query.Description,
+                    Source = query.Source
                 };
                 return View(spellDetails);
             }

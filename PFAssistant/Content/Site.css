@@ -22,3 +22,42 @@ select,
 textarea {
     max-width: 280px;
 }
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: 'Josefin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.hline-top-bottom {
+    padding-top: 0px;
+    border-top: 1px solid #000000;
+    padding-bottom: 0px;
+    border-bottom: 1px solid #000000;
+    /*width: 200px; height: 1px; background: #000*/
+}
+
+.dl-horizontal dt {
+    float: left;
+    text-align: left;
+    width: 100px;
+    
+  }
+  .dl-horizontal dd {
+    margin-left: 0px;
+  }
+
+.spell-title {
+    /*font-family: 'Segoe Script', Arial, sans-serif;*/
+    font-style: italic;
+}
