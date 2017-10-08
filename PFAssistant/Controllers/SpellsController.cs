@@ -19,76 +19,58 @@ namespace PFAssistant.Controllers
     {
         public readonly PFAssistantContext db = new PFAssistantContext();
 
-        // GET: Spells
-        public ActionResult SpellList(string name, string filter, int? page, int? pageSize)
+        public ActionResult Index()
         {
-            var pageNumber = page ?? 1;
-
-            if (name != null)
-                page = 1;
-            else
-                name = filter;
-
-            //(name != null) ? page = 1 : name = filter;
-
-            ViewBag.Filter = name;
-
-            //var spells = db.Spells.FindAll()
-            //                .AsQueryable()
-            //                .OrderBy(t => t.Name);
-                        
-            if (!string.IsNullOrEmpty(name))
-            {
-                // Query the MongoDB collection while ignoring the case of the search string
-                //var query = Query.Matches("name", new BsonRegularExpression(name, "i"));
-                //var results = db.Spells.Find(query)
-                //                    .AsQueryable()
-                //                    .OrderBy(t => t.Name);
-
-                var results = db.Spells.AsQueryable()
-                                       .Where(s => s.Name.ToLower().Contains(name))
-                                       .OrderBy(t => t.Name);
-
-
-                //spells = results.OrderBy(t => t.Name);
-                return View(results.ToPagedList(pageNumber, 10));
-            }
-
-            //var model = spells.ToPagedList(pageNumber, 10);
-            else
-            {
-                return View(db.Spells.FindAll()
-                        .AsQueryable()
-                        .OrderBy(t => t.Name)
-                        .ToPagedList(pageNumber, 10));
-            }
+            return View();
         }
 
-        //public ActionResult SpellList(SearchCriteria search, int? page, int? pageSize)
-        //{
-        //    SpellSearchModel model = new SpellSearchModel();
-        //    var pageNumber = page ?? 1;
+        // GET: Spells
+        public ActionResult SpellList(SearchCriteria search, string nameFilter, string schoolFilter, string Classfilter, int? page, int? pageSize)
+        {
+            SpellSearchModel model = new SpellSearchModel();
+            var pageNumber = page ?? 1;
 
-        //    var spells = db.Spells;
-        //    IQueryable<Spell> results = spells.AsQueryable();
-        //    //.FindAll();
-        //    //.AsQueryable();
-        //    //.OrderBy(t => t.Name);
+            if (search.Name != null || search.School != null || search.Class != null)
+                page = 1;
+            else
+            {                
+                search.Name = nameFilter;
+                search.School = schoolFilter;
+                search.Class = Classfilter;
+            }             
+       
+            model.SearchValues = search;
+            var results = db.Spells.FindAll()
+                                   .AsQueryable();
 
-        //    if (!string.IsNullOrEmpty(search.Name))
-        //    {
-        //        //var query = Query.Matches("name", new BsonRegularExpression(search.Name, "i"));
-        //        //results = results.Find(query).AsQueryable();
-        //        results = results.Where(t => t.Name.Contains(search.Name))
-        //                         .OrderBy(t => t.Name);
-        //    }
+            if (!String.IsNullOrEmpty(model.SearchValues.Name))
+            {
+                // Query the MongoDB collection while ignoring the case of the search string
+                results = results.Where(s => s.Name.ToLower()
+                                 .Contains(search.Name.ToLower()))
+                                 .OrderBy(t => t.Name);
+            }
 
-        //    model.PagedSpellList = results.ToPagedList(pageNumber, 10);
-        //    model.SearchValues = search;
+            if (!String.IsNullOrEmpty(model.SearchValues.School))
+            {
+                results = results.Where(s => s.School.ToLower()
+                                 .Contains(search.School.ToLower()))
+                                 .OrderBy(t => t.Name);
+            }
 
-        //    return View(model);
-        //}
+            if (!String.IsNullOrEmpty(model.SearchValues.Class))
+            {
+                results = results.Where(s => s.SpellLevel.ToLower()
+                                 .Contains(search.Class.ToLower()))
+                                 .OrderBy(t => t.Name);
+            }
+            model.PagedSpellList = results.ToPagedList(pageNumber, 10);
 
+            return View(model);
+        }
+
+
+        // GET:Spells/{id}
         public ActionResult Details(string id)
         {
             if (string.IsNullOrEmpty(id))

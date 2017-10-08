@@ -1,43 +1,33 @@
 ﻿@using X.PagedList.Mvc;
 @using X.PagedList;
+@using PFAssistant.Models;
 
-@model X.PagedList.IPagedList<PFAssistant.MongoContext.Spell>
-
-@*@model PFAssistant.Models.SpellSearchModel*@
+@model PFAssistant.Models.SpellSearchModel
 
 @{
     ViewBag.Title = "SpellList";
 }
 
-<h2>Spell List</h2>
-    @using (Html.BeginForm("SpellList", "Spells", FormMethod.Get))
-    {
-        <p>
-            <div class="form-group">
-                Search by Name: @Html.TextBox("Name", ViewBag.Filter as string)                
-                <input type="submit" value="Search" />
-                @*Search by School: @Html.TextBox("School")
-                Search by Class: @Html.TextBox("Class")*@
+<h2>Results</h2>
+@using (Html.BeginForm("SpellList", "Spells", FormMethod.Get))
+{
+    <p>
+        <div class="form-group">
+            @Html.Label("Name")
+            @Html.TextBox("Name", Model.SearchValues.Name as string)
+            @Html.Label("School")
+            @Html.TextBox("School", Model.SearchValues.School as string)
+            @Html.Label("Class")
+            @Html.TextBox("Class", Model.SearchValues.Class as string)
 
-            </div>
-        </p>
-    }
-       
+            <button type="submit" class="btn btn-default">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+        </div>
+    </p>
+}
 
-@*<p>
-        @using (Html.BeginForm("SpellList", "Spells", FormMethod.Post))
-        {
-            <div class="form-group">
-                Search by Name: @Html.TextBoxFor(x => x.SearchValues.Name, new { @class = "form-control" })
-                <!--<input type="submit" value="Search" />-->
-                Search by School: @Html.TextBoxFor(x => x.SearchValues.School, new { @class = "form-control" })
-                Search by Class: @Html.TextBoxFor(x => x.SearchValues.Class, new { @class = "form-control" })
-                <input type="submit" value="Search" />
-            </div>
-        }
-    </p>*@
-
-<p>
+<div>
     @using (Html.BeginForm("SpellList", "Spells", FormMethod.Get))
     {
         <table class="table">
@@ -45,14 +35,14 @@
                 <th>Name</th>
                 <th>School</th>
                 <th>Descriptor</th>
-                <th>Description</th>                
+                <th>Description</th>
             </tr>
 
-            @foreach (var item in Model)            
+            @foreach (var item in Model.PagedSpellList)
             {
                 <tr>
                     <td>
-                        @*@Html.DisplayFor(modelItem => item.Name)*@
+
                         @Html.ActionLink(item.Name, "Details", new { id = item.Id })
                     </td>
                     <td>
@@ -63,17 +53,26 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.ShortDescription)
-                    </td>                    
-                    @*<td>
-                            @Html.ActionLink(item.Name, "Details", new { id = item.Id })
-                        </td>*@
+                    </td>
                 </tr>
             }
         </table>
     }
-</p>
-
-<div>
-    @Html.PagedListPager(Model, page => Url.Action("SpellList", new { filter = ViewBag.Filter, page, pageSize = Model.PageSize}))
-    @*@Html.PagedListPager(Model.PagedSpellList, page => Url.Action("SpellList", new { Model.SearchValues, page, pageSize = Model.PagedSpellList.PageSize }))*@
 </div>
+
+
+@Html.PagedListPager(Model.PagedSpellList, page => Url.Action("SpellList",
+    new
+    {
+        nameFilter = Model.SearchValues.Name,
+        schoolFilter = Model.SearchValues.School,
+        classFilter = Model.SearchValues.Class,
+        page,
+        pageSize = Model.PagedSpellList.PageSize
+    }),
+    new PagedListRenderOptions()
+    {
+        ContainerDivClasses = new[] { "spell-pagination" },
+        UlElementClasses = new[] { "pagination" },
+        LiElementClasses = new List<string> { "pagination-list-element" }
+    })

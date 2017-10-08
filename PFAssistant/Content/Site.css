@@ -61,3 +61,51 @@ h6,
     /*font-family: 'Segoe Script', Arial, sans-serif;*/
     font-style: italic;
 }
+
+/*--  NAVBAR --*/
+.navbar-inverse {
+    background-color: lightblue;
+    border-color: grey;
+}
+
+/* Hamburger */
+.navbar-toggle {
+    border-color: grey;
+}
+
+/* Navbar Text */
+.navbar-inverse .navbar-brand {
+    color: white;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+     color: white;
+}
+
+.navbar-toggle:focus {
+    background-color: grey;
+}
+
+/*-- PAGINATION BAR --*/
+
+/* Active Page Marker */
+.pagination > .active > span {
+    background-color: grey;
+    border-color: grey;
+}
+
+/* Page Markers */
+.pagination > .pagination-list-element > a {
+    background-color: lightblue;
+    color: white;
+}
+
+/* Ellipses Marker */
+/*.spell-pagination > .pagination > .disabled > a {
+        color: white;
+        background-color:lightblue;
+}*/
+
+
+
+
