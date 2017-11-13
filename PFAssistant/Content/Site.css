@@ -106,6 +106,86 @@ h6,
         background-color:lightblue;
 }*/
 
+/*-- DAILYS VIEW --*/
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+td {
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.strikethrough:checked + label{
+	text-decoration: line-through;
+}
+
+.spell-list-wrapper{
+	display: grid;	
+	grid-template-columns: repeat(3, 1fr); 
+	grid-gap: 1em;
+	grid-auto-rows: minmax(100px, auto);    
+}
+
+.spell-list{
+	background: #fff;
+	color: #555;
+	list-style-type: none;
+	border: 1px solid #555;
+	/*border-radius: 10px;*/
+	margin: 0;
+	padding: 0;
+	transition: 0.3s;    
+}
+
+.spell-list li{
+	padding: 10px;
+	border-bottom: 1px solid #eee;
+	text-align: left;
+	font-style: italic;    
+}
+
+.spell-list li label{
+	font-weight: normal;
+}
+
+.spell-list li.spell-list-header{
+	text-align: center;
+	font-style: normal;
+	background-color: lightblue;
+	color: white;
+	font-size: 20px;
+	border-bottom: 1px solid #555;
+}
+
+li.edit-spell-list{	
+	font-style: normal;
+	text-align: center;
+	padding: 10px;
+}
+
+.spell-list .button{
+	color: white;
+	background-color: lightblue;
+	border: none;
+	padding: 5px 5px;
+	text-decoration: none;
+	/*font-size: 18px;*/
+	border: gray 1px solid;
+	border-radius: 10px;
+}
+
+.spell-list:hover{
+	box-shadow: 0 10px 15px 0 #555;
+}
+
+.spell-list .button:hover{
+	background:grey;
+	color:white;
+}
+
 
 
 

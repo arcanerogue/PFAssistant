@@ -26,6 +26,13 @@ namespace PFAssistant.MongoContext
                 return _context.GetCollection<Spell>("spells");
             }
         }
-        
+
+        public MongoCollection<DailySpells> DailyMemorizations
+        {
+            get
+            {
+                return _context.GetCollection<DailySpells>("dailys");
+            }
+        }
     }
 }

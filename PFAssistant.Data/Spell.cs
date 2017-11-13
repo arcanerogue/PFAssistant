@@ -8,6 +8,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace PFAssistant.MongoContext
 {
+    [BsonIgnoreExtraElements]
     public class Spell
     {
         [BsonRepresentation(BsonType.ObjectId)]
@@ -76,6 +77,8 @@ namespace PFAssistant.MongoContext
         [BsonElement("description")]
         public string Description { get; set; }
 
+        [BsonElement("spell_classes")]
+        public List<SpellLevel> SpellLevels { get; set; }
 
     }
 }

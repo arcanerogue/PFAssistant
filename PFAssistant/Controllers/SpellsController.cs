@@ -24,7 +24,7 @@ namespace PFAssistant.Controllers
             return View();
         }
 
-        // GET: Spells
+        // GET:Spells/
         public ActionResult SpellList(SearchCriteria search, string nameFilter, string schoolFilter, string Classfilter, int? page, int? pageSize)
         {
             SpellSearchModel model = new SpellSearchModel();

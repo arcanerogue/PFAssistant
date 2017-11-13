@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewBag.Title = "Dailys";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    <h2>Daily Memorizations</h2>
+
+    <div class="spell-list-wrapper">
+
+        <div>
+            <ul class="spell-list">
+                <li class="spell-list-header">5th Level</li>
+                <li>
+                    <input type="checkbox" id="spell-1" class="strikethrough">
+                    <label for="cb">*teleport</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="spell-2" class="strikethrough">
+                    <label for="cb">hungry pit</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="spell-2" class="strikethrough">
+                    <label for="cb">overland flight</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="spell-2" class="strikethrough">
+                    <label for="cb">wall of stone</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="spell-2" class="strikethrough">
+                    <label for="cb">persistent slow</label>
+                </li>
+
+                <li>
+                    <input type="checkbox" id="spell-2" class="strikethrough">
+                    <label for="cb">dazing acid arrow</label>
+                </li>
+                <li class="edit-spell-list">
+                    <a href="#" class="button">Edit Spell List</a>
+                </li>
+            </ul>
+        </div>
+
+        <div>
+            <ul class="spell-list">
+                <li class="spell-list-header">4th Level</li>
+                <li>
+                    <input type="checkbox" id="spell-1" class="strikethrough">
+                    <label for="cb">dazing, persistent archimedes' turbine</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="spell-2" class="strikethrough">
+                    <label for="cb">dimensional anchor</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="spell-2" class="strikethrough">
+                    <label for="cb">protection from energy, communal</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="spell-2" class="strikethrough">
+                    <label for="cb">greater invisibility</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="spell-2" class="strikethrough">
+                    <label for="cb">resilient sphere</label>
+                </li>
+
+                <li>
+                    <input type="checkbox" id="spell-2" class="strikethrough">
+                    <label for="cb">black tentacles</label>
+                </li>
+                <li class="edit-spell-list">
+                    <a href="#" class="button">Edit Spell List</a>
+                </li>
+            </ul>
+        </div>
+
+        <div>
+            <ul class="spell-list">
+                <li class="spell-list-header">3rd Level</li>
+                <li>
+                    <input type="checkbox" id="spell-1" class="strikethrough">
+                    <label for="cb">*quickened archimedes' turbine</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="spell-2" class="strikethrough">
+                    <label for="cb">ray of exhaustion</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="spell-2" class="strikethrough">
+                    <label for="cb">stinking cloud</label>
+                </li>
+                <li class="edit-spell-list">
+                    <a href="#" class="button">Edit Spell List</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <ul class="spell-list">
+                <li class="spell-list-header">2nd Level</li>
+                <li>
+                    <input type="checkbox" id="spell-1" class="strikethrough">
+                    <label for="cb">*glitterdust</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="spell-2" class="strikethrough">
+                    <label for="cb">web</label>
+                </li>
+                <li class="edit-spell-list">
+                    <a href="#" class="button">Edit Spell List</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+
+<script type="text/javascript">
+        function strikeText(){
+            var ele = document.getElementById("spell");
+            var check = document.getElementById("cb");
+
+            if(check.checked)
+                ele.style.setProperty("text-decoration", "line-through");
+            else
+                ele.style.setProperty("text-decoration", "none");
+        }
+</script>

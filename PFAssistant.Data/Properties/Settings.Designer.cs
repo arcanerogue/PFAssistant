@@ -35,7 +35,7 @@ namespace PFAssistant.MongoContext.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("pfassistant")]
+        [global::System.Configuration.DefaultSettingValueAttribute("spellDB_test")]
         public string PFAssistantDatabase {
             get {
                 return ((string)(this["PFAssistantDatabase"]));
