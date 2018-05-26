@@ -43,6 +43,9 @@ namespace PFAssistant.Controllers
             var results = db.Spells.FindAll()
                                    .AsQueryable();
 
+            // IQueryable<Spell> spellResults = db.Spells.AsQueryable()
+            //    .OrderBy(n => n.Name);
+
             if (!String.IsNullOrEmpty(model.SearchValues.Name))
             {
                 // Query the MongoDB collection while ignoring the case of the search string

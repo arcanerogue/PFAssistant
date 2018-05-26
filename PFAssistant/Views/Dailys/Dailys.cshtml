@@ -1,4 +1,5 @@
-﻿
+﻿@model PFAssistant.MongoContext.DailySpells
+
 @{
     ViewBag.Title = "Dailys";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,32 +12,59 @@
 
         <div>
             <ul class="spell-list">
+                <li class="spell-list-header">8th Level</li>
+                @foreach (var item in Model.DailySpellsLevel8)
+                {
+                    <li>
+                        <input type="checkbox" class="strikethrough">
+                        <label for="cb">@item</label>
+                    </li>
+                }
+                <li class="edit-spell-list">
+                    <a href="#" class="button">Edit Spell List</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <ul class="spell-list">
+                <li class="spell-list-header">7th Level</li>
+                @foreach (var item in Model.DailySpellsLevel7)
+                {
+                    <li>
+                        <input type="checkbox" class="strikethrough">
+                        <label for="cb">@item</label>
+                    </li>
+                }
+                <li class="edit-spell-list">
+                    <a href="#" class="button">Edit Spell List</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <ul class="spell-list">
+                <li class="spell-list-header">6th Level</li>
+                @foreach (var item in Model.DailySpellsLevel6)
+                {
+                    <li>
+                        <input type="checkbox" class="strikethrough">
+                        <label for="cb">@item</label>
+                    </li>
+                }
+                <li class="edit-spell-list">
+                    <a href="#" class="button">Edit Spell List</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <ul class="spell-list">
                 <li class="spell-list-header">5th Level</li>
-                <li>
-                    <input type="checkbox" id="spell-1" class="strikethrough">
-                    <label for="cb">*teleport</label>
-                </li>
-                <li>
-                    <input type="checkbox" id="spell-2" class="strikethrough">
-                    <label for="cb">hungry pit</label>
-                </li>
-                <li>
-                    <input type="checkbox" id="spell-2" class="strikethrough">
-                    <label for="cb">overland flight</label>
-                </li>
-                <li>
-                    <input type="checkbox" id="spell-2" class="strikethrough">
-                    <label for="cb">wall of stone</label>
-                </li>
-                <li>
-                    <input type="checkbox" id="spell-2" class="strikethrough">
-                    <label for="cb">persistent slow</label>
-                </li>
-
-                <li>
-                    <input type="checkbox" id="spell-2" class="strikethrough">
-                    <label for="cb">dazing acid arrow</label>
-                </li>
+                @foreach (var item in Model.DailySpellsLevel5)
+                {
+                    <li>
+                        <input type="checkbox" class="strikethrough">
+                        <label for="cb">@item</label>
+                    </li>
+                }
                 <li class="edit-spell-list">
                     <a href="#" class="button">Edit Spell List</a>
                 </li>
@@ -46,31 +74,13 @@
         <div>
             <ul class="spell-list">
                 <li class="spell-list-header">4th Level</li>
-                <li>
-                    <input type="checkbox" id="spell-1" class="strikethrough">
-                    <label for="cb">dazing, persistent archimedes' turbine</label>
-                </li>
-                <li>
-                    <input type="checkbox" id="spell-2" class="strikethrough">
-                    <label for="cb">dimensional anchor</label>
-                </li>
-                <li>
-                    <input type="checkbox" id="spell-2" class="strikethrough">
-                    <label for="cb">protection from energy, communal</label>
-                </li>
-                <li>
-                    <input type="checkbox" id="spell-2" class="strikethrough">
-                    <label for="cb">greater invisibility</label>
-                </li>
-                <li>
-                    <input type="checkbox" id="spell-2" class="strikethrough">
-                    <label for="cb">resilient sphere</label>
-                </li>
-
-                <li>
-                    <input type="checkbox" id="spell-2" class="strikethrough">
-                    <label for="cb">black tentacles</label>
-                </li>
+                @foreach (var item in Model.DailySpellsLevel4)
+                {
+                    <li>
+                        <input type="checkbox" class="strikethrough">
+                        <label for="cb">@item</label>
+                    </li>
+                }
                 <li class="edit-spell-list">
                     <a href="#" class="button">Edit Spell List</a>
                 </li>
@@ -80,18 +90,15 @@
         <div>
             <ul class="spell-list">
                 <li class="spell-list-header">3rd Level</li>
-                <li>
-                    <input type="checkbox" id="spell-1" class="strikethrough">
-                    <label for="cb">*quickened archimedes' turbine</label>
-                </li>
-                <li>
-                    <input type="checkbox" id="spell-2" class="strikethrough">
-                    <label for="cb">ray of exhaustion</label>
-                </li>
-                <li>
-                    <input type="checkbox" id="spell-2" class="strikethrough">
-                    <label for="cb">stinking cloud</label>
-                </li>
+
+                @foreach (var item in Model.DailySpellsLevel3)
+                {
+                    <li>
+                        <input type="checkbox" class="strikethrough">
+                        <label for="cb">@item</label>
+                    </li>
+                }
+
                 <li class="edit-spell-list">
                     <a href="#" class="button">Edit Spell List</a>
                 </li>
@@ -100,14 +107,49 @@
         <div>
             <ul class="spell-list">
                 <li class="spell-list-header">2nd Level</li>
-                <li>
-                    <input type="checkbox" id="spell-1" class="strikethrough">
-                    <label for="cb">*glitterdust</label>
+
+                @foreach (var item in Model.DailySpellsLevel2)
+                {
+                    <li>
+                        <input type="checkbox" class="strikethrough">
+                        <label for="cb">@item</label>
+                    </li>
+                }
+
+                <li class="edit-spell-list">
+                    <a href="#" class="button">Edit Spell List</a>
                 </li>
-                <li>
-                    <input type="checkbox" id="spell-2" class="strikethrough">
-                    <label for="cb">web</label>
+            </ul>
+        </div>
+        <div>
+            <ul class="spell-list">
+                <li class="spell-list-header">1st Level</li>
+
+                @foreach (var item in Model.DailySpellsLevel1)
+                {
+                    <li>
+                        <input type="checkbox" class="strikethrough">
+                        <label for="cb">@item</label>
+                    </li>
+                }
+
+                <li class="edit-spell-list">
+                    <a href="#" class="button">Edit Spell List</a>
                 </li>
+            </ul>
+        </div>
+        <div>
+            <ul class="spell-list">
+                <li class="spell-list-header">0th Level</li>
+
+                @foreach (var item in Model.DailySpellsLevel0)
+                {
+                    <li>
+                        <input type="checkbox" class="strikethrough">
+                        <label for="cb">@item</label>
+                    </li>
+                }
+
                 <li class="edit-spell-list">
                     <a href="#" class="button">Edit Spell List</a>
                 </li>
@@ -123,7 +165,7 @@
             var check = document.getElementById("cb");
 
             if(check.checked)
-                ele.style.setProperty("text-decoration", "line-through");
+                ele.style.setProperty("text-decoration", "line-through");               
             else
                 ele.style.setProperty("text-decoration", "none");
         }

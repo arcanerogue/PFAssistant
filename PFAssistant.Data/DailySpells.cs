@@ -29,6 +29,21 @@ namespace PFAssistant.MongoContext
         [BsonElement("spellsLevel3")]
         public List<string> DailySpellsLevel3 { get; set; }
 
+        [BsonElement("spellsLevel4")]
+        public List<string> DailySpellsLevel4 { get; set; }
+
+        [BsonElement("spellsLevel5")]
+        public List<string> DailySpellsLevel5 { get; set; }
+
+        [BsonElement("spellsLevel6")]
+        public List<string> DailySpellsLevel6 { get; set; }
+
+        [BsonElement("spellsLevel7")]
+        public List<string> DailySpellsLevel7 { get; set; }
+
+        [BsonElement("spellsLevel8")]
+        public List<string> DailySpellsLevel8 { get; set; }
+
         [BsonElement("scrollsLevel2")]
         public List<string> ScrollsLevel2{ get; set; }
     }

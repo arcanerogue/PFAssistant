@@ -3,15 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using PFAssistant.MongoContext;
+using PFAssistant.Models;
+using MongoDB.Driver.Builders;
+using MongoDB.Driver.Linq;
 
 namespace PFAssistant.Controllers
 {
     public class DailysController : Controller
     {
+        public readonly PFAssistantContext db = new PFAssistantContext();
+
         // GET: Dailys
         public ActionResult Dailys()
         {
-            return View();
+            var result = db.DailyMemorizations.FindAll().AsQueryable().ToList();
+
+            var dailysModel = result.First();
+
+            return View(dailysModel);
         }
     }
 }

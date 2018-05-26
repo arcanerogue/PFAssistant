@@ -107,16 +107,16 @@ h6,
 }*/
 
 /*-- DAILYS VIEW --*/
-table, th, td {
+/*spells-table, spells-th, spells-td {
     border: 1px solid black;
     border-collapse: collapse;
 }
 
-td {
+spells-td {
     text-align: center;
     padding-left: 5px;
     padding-right: 5px;
-}
+}*/
 
 .strikethrough:checked + label{
 	text-decoration: line-through;
