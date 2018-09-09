@@ -6,23 +6,45 @@
 }
 
 <h2>Spell Search</h2>
+@*@using (Html.BeginForm("SpellList", "Spells", FormMethod.Get))
+    {
+        <div class="form-group">
+            @Html.Label("Name")
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+                @Html.Label("School")
+                @Html.TextBoxFor(x => x.School, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+                @Html.Label("Class")
+                @Html.TextBoxFor(x => x.Class, new { @class = "form-control" })
+        </div>
+
+        <button type="submit" class="btn btn-default">
+            <span class="glyphicon glyphicon-search"></span>
+        </button>
+    }*@
+<div>
 @using (Html.BeginForm("SpellList", "Spells", FormMethod.Get))
 {
-    <div class="form-group">
-        @Html.Label("Name")
-        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
-    </div>
-    <div class="form-group">
+    <p>
+        <div class="form-group">
+            @Html.Label("Name")
+            @Html.TextBox("Name", Model.Name as string)
             @Html.Label("School")
-            @Html.TextBoxFor(x => x.School, new { @class = "form-control" })
-    </div>
-    <div class="form-group">
+            @Html.TextBox("School", Model.School as string)
             @Html.Label("Class")
-            @Html.TextBoxFor(x => x.Class, new { @class = "form-control" })
-    </div>
+            @Html.TextBox("Class", Model.Class as string)
 
-    <button type="submit" class="btn btn-default">
-        <span class="glyphicon glyphicon-search"></span>
-    </button>
+            <button type="submit" class="btn btn-default">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+        </div>
+    </p>
 }
+</div>
 
+@*<div id="SpellSearchResultsPartial">
+    @Html.Action("SpellList")
+</div>*@

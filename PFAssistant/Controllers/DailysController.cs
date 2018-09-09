@@ -19,7 +19,10 @@ namespace PFAssistant.Controllers
         // GET: Dailys
         public ActionResult Dailys()
         {
-            var result = db.DailyMemorizations.FindAll().AsQueryable().ToList();
+            //var result = db.DailyMemorizations.FindAll().AsQueryable().ToList();
+            var result = db.DailyMemorizations
+                .Find(Builders<DailySpells>.Filter.Empty)
+                .ToList();
 
             var dailysModel = result.First();
 

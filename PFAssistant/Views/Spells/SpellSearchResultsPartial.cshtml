@@ -1,0 +1,62 @@
+﻿@using X.PagedList.Mvc;
+@using X.PagedList;
+@using PFAssistant.Models;
+
+@model PFAssistant.Models.SpellSearchModel
+
+@{
+    Layout = null;
+}
+
+<div>
+    <h2>Results</h2>
+    <div>
+        @using (Html.BeginForm("SpellList", "Spells", FormMethod.Get))
+        {
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>School</th>
+                    <th>Descriptor</th>
+                    <th>Description</th>
+                </tr>
+
+                @foreach (var item in Model.PagedSpellList)
+                {
+                    <tr>
+                        <td>
+
+                            @Html.ActionLink(item.Name, "Details", new { id = item.Id })
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.School)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Descriptor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ShortDescription)
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+
+
+    @Html.PagedListPager(Model.PagedSpellList, page => Url.Action("SpellList",
+        new
+        {
+            nameFilter = Model.SearchValues.Name,
+            schoolFilter = Model.SearchValues.School,
+            classFilter = Model.SearchValues.Class,
+            page,
+            pageSize = Model.PagedSpellList.PageSize
+        }),
+        new PagedListRenderOptions()
+        {
+            ContainerDivClasses = new[] { "spell-pagination" },
+            UlElementClasses = new[] { "pagination" },
+            LiElementClasses = new List<string> { "pagination-list-element" }
+        })
+</div>

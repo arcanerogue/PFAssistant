@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using PFAssistant.MongoContext;
+using PFAssistant.Models.PFSpells;
 
 namespace PFAssistant.Models
 {
@@ -31,5 +33,24 @@ namespace PFAssistant.Models
         public string SavingThrow { get; set; }
         public string Description { get; set; }
         public string Source { get; set; }
+
+        public SpellDetails(PFSpell spell)
+        {
+            Id = spell.Id;
+            Name = spell.Name;
+            School = spell.School;
+            SubSchool = spell.SubSchool;
+            Descriptor = spell.Descriptor;
+            SpellLevel = spell.SpellLevel;
+            CastingTime = spell.CastingTime;
+            Components = spell.Components;
+            Range = spell.Range;
+            Area = spell.Area;
+            Effect = spell.Effect;
+            Duration = spell.Duration;
+            SavingThrow = spell.SavingThrow;
+            Description = spell.Description;
+            Source = spell.Source;
+        }
     }
 }

@@ -12,20 +12,25 @@ using MongoDB.Driver.Builders;
 using MongoDB.Driver.Linq;
 using X.PagedList.Mvc;
 using X.PagedList;
+using PFAssistant.Models.PFSpells;
 
 namespace PFAssistant.Controllers
 {    
     public class SpellsController : Controller
     {
-        public readonly PFAssistantContext db = new PFAssistantContext();
+        // public readonly PFAssistantContext db = new PFAssistantContext();
+        public SpellsRepository spellsRepo = new SpellsRepository();
 
         public ActionResult Index()
         {
-            return View();
+            SearchCriteria model = new SearchCriteria();
+            return View("Index", model);
         }
 
         // GET:Spells/
-        public ActionResult SpellList(SearchCriteria search, string nameFilter, string schoolFilter, string Classfilter, int? page, int? pageSize)
+        [HttpGet]
+        public ActionResult SpellList(SearchCriteria search, string nameFilter, string schoolFilter, 
+            string classFilter, int? page, int? pageSize)
         {
             SpellSearchModel model = new SpellSearchModel();
             var pageNumber = page ?? 1;
@@ -36,79 +41,35 @@ namespace PFAssistant.Controllers
             {                
                 search.Name = nameFilter;
                 search.School = schoolFilter;
-                search.Class = Classfilter;
+                search.Class = classFilter;
             }             
        
             model.SearchValues = search;
-            var results = db.Spells.FindAll()
-                                   .AsQueryable();
+            var results = search.filterResults();
 
-            // IQueryable<Spell> spellResults = db.Spells.AsQueryable()
-            //    .OrderBy(n => n.Name);
-
-            if (!String.IsNullOrEmpty(model.SearchValues.Name))
-            {
-                // Query the MongoDB collection while ignoring the case of the search string
-                results = results.Where(s => s.Name.ToLower()
-                                 .Contains(search.Name.ToLower()))
-                                 .OrderBy(t => t.Name);
-            }
-
-            if (!String.IsNullOrEmpty(model.SearchValues.School))
-            {
-                results = results.Where(s => s.School.ToLower()
-                                 .Contains(search.School.ToLower()))
-                                 .OrderBy(t => t.Name);
-            }
-
-            if (!String.IsNullOrEmpty(model.SearchValues.Class))
-            {
-                results = results.Where(s => s.SpellLevel.ToLower()
-                                 .Contains(search.Class.ToLower()))
-                                 .OrderBy(t => t.Name);
-            }
             model.PagedSpellList = results.ToPagedList(pageNumber, 10);
 
             return View(model);
+            //return PartialView("SpellSearchResultsPartial", model);
         }
 
 
         // GET:Spells/{id}
+        [HttpGet]
         public ActionResult Details(string id)
         {
-            if (string.IsNullOrEmpty(id))
-            {
+            if (string.IsNullOrEmpty(id)){
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            IQueryable<Spell> spellQuery = db.Spells.AsQueryable(); 
-
-            var query = spellQuery.Where(s => s.Id == id).FirstOrDefault();
+            var query = spellsRepo.FindSpellById(id);
 
             if (query != null && !String.IsNullOrEmpty(query.Id))
             {
-                SpellDetails spellDetails = new SpellDetails
-                {
-                    Id = query.Id,
-                    Name = query.Name,
-                    School = query.School,
-                    SubSchool = query.SubSchool,
-                    Descriptor = query.Descriptor,
-                    SpellLevel = query.SpellLevel,
-                    CastingTime = query.CastingTime,
-                    Components = query.Components,
-                    Range = query.Range,
-                    Area = query.Area,
-                    Effect = query.Effect,
-                    Duration = query.Duration,
-                    SavingThrow = query.SavingThrow,
-                    Description = query.Description,
-                    Source = query.Source
-                };
+                SpellDetails spellDetails = new SpellDetails(query);               
                 return View(spellDetails);
             }
-            else
-            {
+            else {
                 return HttpNotFound();
             }
         }

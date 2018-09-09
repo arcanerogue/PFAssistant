@@ -8,13 +8,13 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace PFAssistant.MongoContext
 {
-    [BsonIgnoreExtraElements]
+    //[BsonIgnoreExtraElements]
     public class SpellLevel
     {
-        [BsonElement("class")]
+       // [BsonElement("class")]
         public string CastingClass { get; set; }
 
-        [BsonElement("level")]
+        //[BsonElement("level")]
         public string Level { get; set; }
     }
 }
