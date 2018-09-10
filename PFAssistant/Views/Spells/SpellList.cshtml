@@ -18,7 +18,7 @@
             @Html.Label("School")
             @Html.TextBox("School", Model.SearchValues.School as string)
             @Html.Label("Class")
-            @Html.TextBox("Class", Model.SearchValues.Class as string)
+            @Html.TextBox("CharacterClass", Model.SearchValues.CharacterClass as string)
 
             <button type="submit" class="btn btn-default">
                 <span class="glyphicon glyphicon-search"></span>
@@ -66,7 +66,7 @@
     {
         nameFilter = Model.SearchValues.Name,
         schoolFilter = Model.SearchValues.School,
-        classFilter = Model.SearchValues.Class,
+        classFilter = Model.SearchValues.CharacterClass,
         page,
         pageSize = Model.PagedSpellList.PageSize
     }),

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace PFAssistant.MongoContext
+namespace PFAssistant.Models.PFDailys
 {
     [BsonIgnoreExtraElements]
-    public class DailySpells
+    public class PFDailySpells
     {
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
@@ -45,6 +45,6 @@ namespace PFAssistant.MongoContext
         public List<string> DailySpellsLevel8 { get; set; }
 
         [BsonElement("scrollsLevel2")]
-        public List<string> ScrollsLevel2{ get; set; }
+        public List<string> ScrollsLevel2 { get; set; }
     }
 }

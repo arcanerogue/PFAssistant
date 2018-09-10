@@ -8,9 +8,9 @@ using PFAssistant.Models.PFSpells;
 
 namespace PFAssistant.Models.Interfaces
 {
-    public interface ISpellsRepository
+    public interface IPFSpellsRepository
     {
         IEnumerable<PFSpell> GetSpells();
-        PFSpell FindSpellById(string id);
+        PFSpell GetSpellById(string id);
     }
 }

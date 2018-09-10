@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MongoDB.Driver;
 using PFAssistant.MongoContext.Properties;
 using PFAssistant.Models.PFSpells;
+using PFAssistant.Models.PFDailys;
 
 namespace PFAssistant.MongoContext
 {
@@ -34,11 +35,11 @@ namespace PFAssistant.MongoContext
         }
 
         //public MongoCollection<DailySpells> DailyMemorizations
-        public IMongoCollection<DailySpells> DailyMemorizations
+        public IMongoCollection<PFDailySpells> DailyMemorizations
         {
             get
             {
-                return _context.GetCollection<DailySpells>("dailys");
+                return _context.GetCollection<PFDailySpells>("dailys");
             }
         }
     }

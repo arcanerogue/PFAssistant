@@ -1,4 +1,4 @@
-﻿@model PFAssistant.Models.SearchCriteria
+﻿@model PFAssistant.Models.PFSpells.PFSpellsFilter
 
 @{
     ViewBag.Title = "Index";
@@ -35,7 +35,7 @@
             @Html.Label("School")
             @Html.TextBox("School", Model.School as string)
             @Html.Label("Class")
-            @Html.TextBox("Class", Model.Class as string)
+            @Html.TextBox("CharacterClass", Model.CharacterClass as string)
 
             <button type="submit" class="btn btn-default">
                 <span class="glyphicon glyphicon-search"></span>

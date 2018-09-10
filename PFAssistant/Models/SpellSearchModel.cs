@@ -10,7 +10,7 @@ namespace PFAssistant.Models
 {
     public class SpellSearchModel
     {
-        public SearchCriteria SearchValues { get; set; }
-        public IPagedList<PFAssistant.Models.PFSpells.PFSpell> PagedSpellList { get; set; }
+        public PFSpellsFilter SearchValues { get; set; }
+        public IPagedList<PFSpell> PagedSpellList { get; set; }
     }
 }

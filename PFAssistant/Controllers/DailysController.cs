@@ -9,24 +9,22 @@ using PFAssistant.MongoContext;
 using PFAssistant.Models;
 using MongoDB.Driver.Builders;
 using MongoDB.Driver.Linq;
+using PFAssistant.Models.PFDailys;
+using PFAssistant.MongoContext.PFDailys;
+using System.Threading.Tasks;
 
 namespace PFAssistant.Controllers
 {
     public class DailysController : Controller
     {
-        public readonly PFAssistantContext db = new PFAssistantContext();
+        //public readonly PFAssistantContext db = new PFAssistantContext();
+        public readonly PFDailysRepository dailysRepo = new PFDailysRepository();
 
         // GET: Dailys
         public ActionResult Dailys()
         {
-            //var result = db.DailyMemorizations.FindAll().AsQueryable().ToList();
-            var result = db.DailyMemorizations
-                .Find(Builders<DailySpells>.Filter.Empty)
-                .ToList();
-
-            var dailysModel = result.First();
-
-            return View(dailysModel);
+            var dailysModel = dailysRepo.GetDailys();
+            return View(dailysModel.First());
         }
     }
 }

@@ -63,9 +63,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\ISpellsRepository.cs" />
+    <Compile Include="Interfaces\IPFDailysRepository.cs" />
+    <Compile Include="Interfaces\IPFSpellsRepository.cs" />
+    <Compile Include="PFDailys\PFDailySpells.cs" />
     <Compile Include="PFSpells\PFSpell.cs" />
     <Compile Include="PFSpells\PFSpellLevel.cs" />
+    <Compile Include="PFSpells\PFSpellsFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
