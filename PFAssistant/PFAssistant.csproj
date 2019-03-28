@@ -250,6 +250,7 @@
     <Content Include="Views\Spells\Index.cshtml" />
     <Content Include="Views\Dailys\Dailys.cshtml" />
     <Content Include="Views\Spells\SpellSearchResultsPartial.cshtml" />
+    <Content Include="Views\Spells\SpellSearchFormPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,33 @@
+﻿@model PFAssistant.Models.PFSpells.PFSpellsFilter
+
+
+
+@using (Ajax.BeginForm("SearchSpellsResults", "Spells", FormMethod.Post,
+    new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "POST",
+        UpdateTargetId = "spell-search-results"
+    }))
+{
+<h2>Spell Search</h2>
+<div class="form-group">
+    @*@Html.Label("Name")
+    @Html.TextBox("nameFilter")
+    @Html.Label("School")
+    @Html.TextBox("schoolFilter")
+    @Html.Label("Class")
+    @Html.TextBox("classFilter")*@
+
+    @Html.Label("Name")
+    @Html.TextBox("Name", Model.Name as string)
+    @Html.Label("School")
+    @Html.TextBox("School", Model.School as string)
+    @Html.Label("Class")
+    @Html.TextBox("CharacterClass", Model.CharacterClass as string)
+    
+    <button type="submit" class="btn btn-default">
+        <span class="glyphicon glyphicon-search"></span>
+    </button>
+</div>
+}

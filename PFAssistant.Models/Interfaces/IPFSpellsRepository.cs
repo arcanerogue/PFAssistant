@@ -12,5 +12,6 @@ namespace PFAssistant.Models.Interfaces
     {
         IEnumerable<PFSpell> GetSpells();
         PFSpell GetSpellById(string id);
+        Task<IEnumerable<PFSpell>> GetSpellsByFilter(PFSpellsFilter filter);
     }
 }

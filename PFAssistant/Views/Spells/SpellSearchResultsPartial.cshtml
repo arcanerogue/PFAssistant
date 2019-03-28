@@ -11,7 +11,7 @@
 <div>
     <h2>Results</h2>
     <div>
-        @using (Html.BeginForm("SpellList", "Spells", FormMethod.Get))
+        @using (Html.BeginForm("SearchSpellsResults", "Spells", FormMethod.Get))
         {
             <table class="table">
                 <tr>
@@ -24,19 +24,10 @@
                 @foreach (var item in Model.PagedSpellList)
                 {
                     <tr>
-                        <td>
-
-                            @Html.ActionLink(item.Name, "Details", new { id = item.Id })
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.School)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Descriptor)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ShortDescription)
-                        </td>
+                        <td>@Html.ActionLink(item.Name, "Details", new { id = item.Id })</td>
+                        <td>@Html.DisplayFor(modelItem => item.School)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Descriptor)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ShortDescription)</td>
                     </tr>
                 }
             </table>
@@ -44,19 +35,26 @@
     </div>
 
 
-    @Html.PagedListPager(Model.PagedSpellList, page => Url.Action("SpellList",
+    @Html.PagedListPager(Model.PagedSpellList, page => Url.Action("SearchSpellsResults",
         new
         {
             nameFilter = Model.SearchValues.Name,
             schoolFilter = Model.SearchValues.School,
-            classFilter = Model.SearchValues.Class,
+            classFilter = Model.SearchValues.CharacterClass,
             page,
             pageSize = Model.PagedSpellList.PageSize
         }),
-        new PagedListRenderOptions()
+        PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+        new PagedListRenderOptions
         {
             ContainerDivClasses = new[] { "spell-pagination" },
             UlElementClasses = new[] { "pagination" },
             LiElementClasses = new List<string> { "pagination-list-element" }
-        })
+        },
+        new AjaxOptions()
+        {
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "GET",
+            UpdateTargetId = "spell-search-results"
+        }))
 </div>

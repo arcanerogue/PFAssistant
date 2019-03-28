@@ -17,10 +17,10 @@ namespace PFAssistant.Controllers
 {
     public class DailysController : Controller
     {
-        //public readonly PFAssistantContext db = new PFAssistantContext();
         public readonly PFDailysRepository dailysRepo = new PFDailysRepository();
 
         // GET: Dailys
+        [HttpGet]
         public ActionResult Dailys()
         {
             var dailysModel = dailysRepo.GetDailys();

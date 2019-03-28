@@ -10,7 +10,7 @@
       <Value Profile="(Default)">mongodb://localhost</Value>
     </Setting>
     <Setting Name="PFAssistantDatabase" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">spellDB_test</Value>
+      <Value Profile="(Default)">pfassistant</Value>
     </Setting>
   </Settings>
 </SettingsFile>
