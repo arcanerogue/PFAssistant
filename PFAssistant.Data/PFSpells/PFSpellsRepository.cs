@@ -18,7 +18,6 @@ namespace PFAssistant.MongoContext.PFSpells
 
         public IEnumerable<PFSpell> GetSpells()
         {
-            //var results = db.Spells.FindAll().AsQueryable();
             var results = db.Spells
                 .Find(Builders<PFSpell>.Filter.Empty)
                 .SortBy(s => s.Name)
@@ -28,7 +27,6 @@ namespace PFAssistant.MongoContext.PFSpells
 
         public async Task<IEnumerable<PFSpell>> GetSpellsByFilter(PFSpellsFilter filter)
         {
-            //var results = GetSpells();
             var results = db.Spells.AsQueryable();
 
             if (!String.IsNullOrEmpty(filter.Name))
@@ -57,8 +55,6 @@ namespace PFAssistant.MongoContext.PFSpells
 
         public PFSpell GetSpellById(string id)
         {
-            //var spellQuery = db.Spells.AsQueryable();
-            //var query = spellQuery.Where(s => s.Id == id).FirstOrDefault();
             var query = db.Spells
                 .Find(s => s.Id == id)
                 .FirstOrDefault();

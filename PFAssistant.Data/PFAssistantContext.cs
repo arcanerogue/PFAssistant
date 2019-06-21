@@ -12,20 +12,15 @@ namespace PFAssistant.MongoContext
 {
     public class PFAssistantContext
     {
-        //public MongoDatabase _context;
         public IMongoDatabase _context;
 
 
         public PFAssistantContext()
         {
-            /*var client = new MongoClient(Settings.Default.PFAssistantConnectionString);
-            var server = client.GetServer();
-            _context = server.GetDatabase(Settings.Default.PFAssistantDatabase);*/
             var client = new MongoClient(Settings.Default.PFAssistantConnectionString);
             _context = client.GetDatabase(Settings.Default.PFAssistantDatabase);
         }
 
-        //public MongoCollection<PFSpell> Spells
         public IMongoCollection<PFSpell> Spells
         {
             get
@@ -34,7 +29,6 @@ namespace PFAssistant.MongoContext
             }
         }
 
-        //public MongoCollection<DailySpells> DailyMemorizations
         public IMongoCollection<PFDailySpells> DailyMemorizations
         {
             get

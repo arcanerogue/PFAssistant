@@ -78,40 +78,9 @@ namespace PFAssistant.Models.PFSpells
         [BsonElement("description")]
         public string Description { get; set; }
 
-        // public List<PFSpellLevel> SpellLevels { get; set; }
 
         public PFSpell()
-        {
-            //castingClassFormatter(SpellLevel, SpellLevels);
-        }
-
-       /* public static void castingClassFormatter(string level, List<PFSpellLevel> spellLevels)
-        {
-            if (!String.IsNullOrEmpty(level))
-            {
-                char[] classDelimiter = { ',' };
-                String[] splitClass = level.Split(classDelimiter);
-
-                foreach (String s in splitClass)
-                {
-                    String trimString = s.Trim();
-                    char[] delimiter = { '/', ' ' };
-                    String[] splits = trimString.Split(delimiter);
-
-                    //Console.WriteLine(splits[0] + " 6");
-                    for (int i = 0; i < splits.Length - 1; i++)
-                    {
-                        Console.WriteLine("{0} {1}", splits[i], splits[splits.Length - 1]);
-                        PFSpellLevel casterLevel = new PFSpellLevel
-                        {
-                            CastingClass = splits[i],
-                            Level = splits[splits.Length - 1]
-                        };
-                        spellLevels.Add(casterLevel);
-                    }
-                }
-            }
-        } */
+        {}
     }
 }
 
